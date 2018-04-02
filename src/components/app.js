@@ -20,12 +20,28 @@ class App extends Component {
         });
     }
 
+    deleteItem(index){
+
+        // const newList = this.state.list.slice()
+
+        const newList = [...this.state.list]; //making a new array with the values from the original array
+
+        newList.splice(index, 1);
+
+        // console.log('New:', newList);
+        // console.log('Old:', this.state.list);
+
+        this.setState({
+            list: newList
+        });
+    }
+
     render(){
         return (
             <div className="container">
             <h1 className="center">To Do List</h1>
             <AddForm add={this.addItem.bind(this)}/>
-            <List list={this.state.list}/>
+            <List list={this.state.list} delete={this.deleteItem.bind(this)}/>
          </div>
         )
     }
